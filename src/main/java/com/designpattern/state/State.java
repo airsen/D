@@ -24,11 +24,6 @@ enum State {
         public void play() {
             context.setState(NORMAL);
         }
-
-        @Override
-        public void takePills() {
-            context.setState(HEALTH);
-        }
     },
     FULL {
         @Override
@@ -64,16 +59,6 @@ enum State {
     },
     SICK {
         @Override
-        public void eat() {
-            context.setState(SICK);
-        }
-
-        @Override
-        public void play() {
-            context.setState(SICK);
-        }
-
-        @Override
         public void takePills() {
             context.setState(NORMAL);
         }
@@ -99,10 +84,16 @@ enum State {
     @Getter
     protected Context context;
 
-    public abstract void eat();
+    // 用protected修饰，并且不定义成抽象方法，子类可以选择性地继承。
+    // 因为实际上不是所有的状态都有各种转移条件，每个状态只实现自己关系的转移条件就行，
+    // 其他的交给父亲方法来执行一个空操作，表示没有这个操作，执行完还是在这个状态。
+    protected void eat() {
+    }
 
-    public abstract void play();
+    protected void play() {
+    }
 
-    public abstract void takePills();
+    protected void takePills() {
+    }
 
 }
