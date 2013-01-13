@@ -1,4 +1,4 @@
-package com.designpattern.strategy;
+package info.airsen.D.strategy;
 
 import lombok.Setter;
 

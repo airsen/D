@@ -1,4 +1,4 @@
-package com.designpattern.state;
+package info.airsen.D.state;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,71 +10,83 @@ import lombok.Setter;
  * @author airsen
  * @since 12-12-16 下午12:58
  */
-enum State {
+public enum State {
 
 	HEALTH {
 		@Override
-		public void eat() {
+		public State eat() {
 			context.setState(NORMAL);
+			return context.getState();
 		}
 
 		@Override
-		public void play() {
+		public State play() {
 			context.setState(NORMAL);
+			return context.getState();
 		}
 	},
 	FULL {
 		@Override
-		public void eat() {
+		public State eat() {
 			context.setState(SICK);
+			return context.getState();
 		}
 
 		@Override
-		public void play() {
+		public State play() {
 			context.setState(NORMAL);
+			return context.getState();
 		}
 
 		@Override
-		public void takePills() {
+		public State takePills() {
 			context.setState(NORMAL);
+			return context.getState();
 		}
 	},
 	HUNGRY {
 		@Override
-		public void eat() {
+		public State eat() {
 			context.setState(NORMAL);
+			return context.getState();
 		}
 
 		@Override
-		public void play() {
+		public State play() {
 			context.setState(SICK);
+			return context.getState();
 		}
 
 		@Override
-		public void takePills() {
+		public State takePills() {
 			context.setState(NORMAL);
+			return context.getState();
 		}
 	},
 	SICK {
 		@Override
-		public void takePills() {
+		public State takePills() {
 			context.setState(NORMAL);
+			return context.getState();
 		}
 	},
 	NORMAL {
 		@Override
-		public void eat() {
+		public State eat() {
 			context.setState(FULL);
+			return context.getState();
 		}
 
 		@Override
-		public void play() {
+		public State play() {
 			context.setState(HUNGRY);
+			return context.getState();
 		}
 
 		@Override
-		public void takePills() {
+		public State takePills() {
 			context.setState(HEALTH);
+			return context.getState();
 		}
 	};
 
@@ -85,12 +97,28 @@ enum State {
 	// 用protected修饰，并且不定义成抽象方法，子类可以选择性地继承。
 	// 因为实际上不是所有的状态都有各种转移条件，每个状态只实现自己关系的转移条件就行，
 	// 其他的交给父亲方法来执行一个空操作，表示没有这个操作，执行完还是在这个状态。
-	protected void eat() {
+
+	/**
+	 * 吃饭
+	 * @return 执行该动作以后的状态
+	 */
+	protected State eat() {
+		return this;
 	}
 
-	protected void play() {
+	/**
+	 * 玩耍
+	 * @return 执行该动作以后的状态
+	 */
+	protected State play() {
+		return this;
 	}
 
-	protected void takePills() {
+	/**
+	 * 吃万能恢复药
+	 * @return 执行该动作以后的状态
+	 */
+	protected State takePills() {
+		return this;
 	}
 }

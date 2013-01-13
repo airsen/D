@@ -1,4 +1,4 @@
-package com.designpattern.strategy;
+package info.airsen.D.strategy;
 
 /**
  * <p>枚举策略类</p>

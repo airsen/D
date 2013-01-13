@@ -1,4 +1,4 @@
-package com.designpattern.state;
+package info.airsen.D.state;
 
 import lombok.Getter;
 
@@ -27,21 +27,21 @@ public class Context {
 	}
 
 	// 事件（状态转移条件）：吃了个饭
-	public void eat() {
-		state.eat();
+	public State eat() {
 		System.out.println("吃了个饭:" + state);
+		return state.eat();
 	}
 
 	// 事件（状态转移条件）：玩了一会
-	public void play() {
-		state.play();
+	public State play() {
 		System.out.println("玩了一会:" + state);
+		return state.play();
 	}
 
 	// 事件（状态转移条件）：吃万能恢复药
-	public void takePills() {
-		state.takePills();
+	public State takePills() {
 		System.out.println("吃万能恢复药:" + state);
+		return state.takePills();
 	}
 
 }
